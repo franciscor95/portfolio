@@ -3,6 +3,10 @@
   src: url('./fonts/HelveticaNeue.ttc') format('ttc');
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: rgb(192, 193, 194);
   font-family: HelveticaNeue;
@@ -11,6 +15,10 @@ body {
 .header {
   background-color: rgb(192, 193, 194);
   z-index: 2;
+}
+
+.navigator {
+  cursor: pointer;
 }
 
 .sidebar {
@@ -26,6 +34,11 @@ p, a, h1 {
 
 h1 {
   text-transform: uppercase;
+  font-weight: normal;
+  font-style: italic;
+}
+
+span {
   font-weight: normal;
   font-style: italic;
 }
