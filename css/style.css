@@ -18,17 +18,16 @@ body {
   z-index: 1;
 }
 
-h1 {
+p, a, h1 {
   margin: 0;
-  font-size: 25px;
+  font-size: 21px;
+  line-height: 25px;
+}
+
+h1 {
   text-transform: uppercase;
   font-weight: normal;
   font-style: italic;
-}
-
-p, a {
-  margin: 0;
-  font-size: 21px;
 }
 
 a {
@@ -47,21 +46,15 @@ a:hover {
     top: 0;
   }
   
-  h1 {
-    font-size: 21px;
-  }
-  
-  p, a {
+  p, a , h1 {
     font-size: 18px;
+    line-height: 21px;
   }
 }
 
-@media screen and (max-width: 768px) { /* mobile */
-  h1 {
-    font-size: 24px;
-  }
-  
-  p, a {
+@media screen and (max-width: 768px) { /* mobile */ 
+  p, a, h1 {
     font-size: 20px;
+    line-height: 24px;
   }
 }
