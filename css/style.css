@@ -8,12 +8,12 @@ html {
 }
 
 body {
-  background-color: rgb(192, 193, 194);
+  background-color: rgb(205, 205, 205);
   font-family: HelveticaNeue;
 }
 
 .header {
-  background-color: rgb(192, 193, 194);
+  background-color: rgb(205, 205, 205);
   z-index: 2;
 }
 
@@ -28,8 +28,9 @@ body {
 
 p, a, h1 {
   margin: 0;
-  font-size: 21px;
-  line-height: 25px;
+  font-size: 22px;
+  line-height: 27px;
+  font-weight: normal;
 }
 
 h1 {
@@ -38,36 +39,26 @@ h1 {
   font-style: italic;
 }
 
-span {
+.title span {
   font-weight: normal;
   font-style: italic;
 }
 
 a {
   color: black;
-  text-decoration: underline;
+  text-decoration: none;
+  border-bottom: 2px solid black;
 }
 
 a:hover {
-  color: black;
+  color: #dc3545;
   text-decoration: none;
+  border-bottom: 2px solid #dc3545;
 }
 
 @media screen and (max-width: 992px) { /* tablet */
   .sidebar {
     position: relative !important;
     top: 0;
-  }
-  
-  p, a , h1 {
-    font-size: 18px;
-    line-height: 21px;
-  }
-}
-
-@media screen and (max-width: 768px) { /* mobile */ 
-  p, a, h1 {
-    font-size: 20px;
-    line-height: 24px;
   }
 }
