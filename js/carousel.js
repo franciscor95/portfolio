@@ -5,3 +5,9 @@ document.querySelectorAll('.carousel').forEach(carousel => {
     progressText.innerText = event.to + 1;
   })
 });
+
+// document.querySelectorAll('.carousel .carousel-item').forEach(carousel => {
+//   const width = carousel.offsetWidth;
+
+//   carousel.style.height = `${width}px`;
+// });
