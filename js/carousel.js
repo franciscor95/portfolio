@@ -1,4 +1,8 @@
-document.querySelectorAll('.carousel').forEach(carousel => {
+const allCarousels = document.querySelectorAll('.carousel');
+const allCarouselItems = document.querySelectorAll('.carousel-item');
+
+// carousel counter
+allCarousels.forEach(carousel => {
   const progressText = carousel.parentElement.querySelector('.image-progress p span');
 
   $(`#${carousel.id}`).on('slide.bs.carousel', (event) => {
@@ -6,8 +10,36 @@ document.querySelectorAll('.carousel').forEach(carousel => {
   })
 });
 
-// document.querySelectorAll('.carousel .carousel-item').forEach(carousel => {
-//   const width = carousel.offsetWidth;
+// carousel dimensions
+const getDimensions = () => {
+  const column = document.querySelector('.main');
+  return {
+    width: column.offsetWidth,
+    height: column.offsetWidth / 1.5,
+    smallHeight: column.offsetWidth / 1.2,
+  }
+}
 
-//   carousel.style.height = `${width}px`;
-// });
+const setDimensions = () => {
+  const docWidth = document.body.clientWidth;
+  const { height, smallHeight, width } = getDimensions();
+
+  const realHeight = docWidth < 768 ? smallHeight : height
+
+  allCarouselItems.forEach((item) => {
+    const video = item.querySelector('video');
+
+    if (video) {
+      item.style.backgroundColor = 'black';
+    }
+
+    item.style.height = `${realHeight}px`;
+    item.style.width = `${width}px`;
+  })
+}
+
+$(window).resize(() => {
+  setDimensions();
+});
+
+setDimensions();

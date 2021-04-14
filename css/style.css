@@ -18,7 +18,6 @@ body {
 }
 
 .navigator {
-  /* cursor: pointer; */
   cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>🌶</text></svg>")
   16 0, auto;
 }
@@ -46,6 +45,23 @@ h1 {
   font-style: italic;
 }
 
+video {
+  outline: none;
+}
+
+video::-webkit-media-controls-enclosure {
+	width: 60%;
+}
+
+video::-webkit-media-controls-panel {
+  width: 60%;
+  position: absolute;
+	bottom: 0px;
+	height: 100px;
+  background-image: none !important;
+  filter: brightness(0.5);
+}
+
 .title span {
   font-weight: normal;
   font-style: italic;
@@ -63,26 +79,15 @@ h1 {
   border-bottom: 2px solid #dc3545;
 }
 
+.carousel-item img, .carousel-item video {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 @media screen and (max-width: 992px) { /* tablet */
   .sidebar {
     position: relative !important;
     top: 0;
-  }
-}
-
-
-@media screen and (max-width: 768px) {
-  .carousel-inner {
-    height: 600px;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-  }
-
-  .carousel-inner img {
-    object-fit: fill;
-    /* transform: translateX(-50%); */
-    max-width: 100%;
-    height: 100%;
   }
 }
