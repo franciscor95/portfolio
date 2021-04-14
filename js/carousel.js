@@ -27,12 +27,6 @@ const setDimensions = () => {
   const realHeight = docWidth < 768 ? smallHeight : height
 
   allCarouselItems.forEach((item) => {
-    const video = item.querySelector('video');
-
-    if (video) {
-      item.style.backgroundColor = 'black';
-    }
-
     item.style.height = `${realHeight}px`;
     item.style.width = `${width}px`;
   })

@@ -79,6 +79,10 @@ video::-webkit-media-controls-panel {
   border-bottom: 2px solid #dc3545;
 }
 
+.item-video {
+  background-color: black;
+}
+
 .carousel-item img, .carousel-item video {
   position: absolute;
   left: 50%;
