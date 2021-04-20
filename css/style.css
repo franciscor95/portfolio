@@ -12,6 +12,11 @@ body {
   font-family: HelveticaNeue;
 }
 
+.padding-mobile {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 .header {
   background-color: rgb(205, 205, 205);
   z-index: 2;
@@ -81,12 +86,6 @@ video::-webkit-media-controls-panel {
 
 .item-video {
   background-color: black;
-}
-
-.carousel-item img, .carousel-item video {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 @media screen and (max-width: 992px) { /* tablet */
