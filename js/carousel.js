@@ -37,6 +37,17 @@ const setVideoBehaviour = () => {
 
 
 
+// OFFSET HEIGHT
+let offsetHeight;
+
+const setOffsetHeight = () => {
+  const headerHeight = document.querySelector('.header').offsetHeight;
+  const sidebarHeight = document.querySelector('.sidebar').offsetHeight;
+  offsetHeight = headerHeight ? headerHeight + sidebarHeight : 0;
+}
+
+
+
 // CAROUSEL
 const allCarousels = document.querySelectorAll('.carousel');
 const allCarouselsJQ = $('.carousel');
@@ -63,32 +74,43 @@ const setCarouselSlideOnFocus = (oldIndex, newIndex) => {
   }
 };
 
-carouselPositions.forEach(position => {
-  if (window.scrollY >= position - 60) {
-    currentCarouselPosition = position;
-  }
-})
+const setCarouselBehaviour = () => {
+  carouselPositions.forEach(position => {
+    if (window.scrollY >= position - 60) {
+      currentCarouselPosition = position;
+    }
+  });
+  
+  allCarousels.forEach(carousel => {
+    setCounter(carousel);
+    carouselPositions.push(carousel.offsetTop + offsetHeight)
+  });
 
-allCarousels.forEach(carousel => {
-  setCounter(carousel);
-  carouselPositions.push(carousel.offsetTop)
-});
+  const eventBehaviour = () => {
+    if (window.scrollY >= carouselPositions[currentCarouselPosition + 1] - 60 - (offsetHeight / 3)) {
+      currentCarouselPosition += 1;
+      setCarouselSlideOnFocus(currentCarouselPosition - 1, currentCarouselPosition);
+    } else if (window.scrollY <= carouselPositions[currentCarouselPosition - 1]) {
+      currentCarouselPosition -= 1;
+      setCarouselSlideOnFocus(currentCarouselPosition + 1, currentCarouselPosition);
+    }
+  };
 
-document.addEventListener('scroll', () => {
-  if (window.scrollY >= carouselPositions[currentCarouselPosition + 1] - 60) {
-    currentCarouselPosition += 1;
-    setCarouselSlideOnFocus(currentCarouselPosition - 1, currentCarouselPosition);
-  } else if (window.scrollY <= carouselPositions[currentCarouselPosition - 1]) {
-    currentCarouselPosition -= 1;
-    setCarouselSlideOnFocus(currentCarouselPosition + 1, currentCarouselPosition);
-  }
-});
+  document.removeEventListener('scroll', eventBehaviour);
+  document.addEventListener('scroll', eventBehaviour);
+};
 
 
 
 // INITIALIZERS
-$(window).resize(() => {
+const init = () => {
   setVideoDimensions();
+  setOffsetHeight();
+  setCarouselBehaviour();
+};
+
+$(window).resize(() => {
+  init();
 });
 
-setVideoDimensions();
+init();
