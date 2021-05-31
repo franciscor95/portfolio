@@ -52,7 +52,7 @@ const setOffsetHeight = () => {
 const allCarousels = document.querySelectorAll('.carousel');
 const allCarouselsJQ = $('.carousel');
 const carouselPositions = [];
-let currentCarouselPosition = 0;
+let currentCarouselPosition;
 
 // CAROUSEL COUNTER
 const setCounter = (carousel) => {
@@ -65,7 +65,12 @@ const setCounter = (carousel) => {
 
 // CAROUSEL SLIDE ON FOCUS
 const setCarouselSlideOnFocus = (oldIndex, newIndex) => {
-  $(`#${allCarouselsJQ[oldIndex].id}`).carousel('pause');
+  // pause old
+  if (oldIndex !== -1) {
+    $(`#${allCarouselsJQ[oldIndex].id}`).carousel('pause');
+  }
+  
+  // play new
   if (allCarouselsJQ[newIndex] !== videoCarouselParent) {
     videoReset();
     $(`#${allCarouselsJQ[newIndex].id}`).carousel('cycle');
@@ -75,22 +80,26 @@ const setCarouselSlideOnFocus = (oldIndex, newIndex) => {
 };
 
 const setCarouselBehaviour = () => {
-  carouselPositions.forEach(position => {
-    if (window.scrollY >= position - 60) {
-      currentCarouselPosition = position;
-    }
-  });
-  
   allCarousels.forEach(carousel => {
     setCounter(carousel);
     carouselPositions.push(carousel.offsetTop + offsetHeight)
   });
 
+  carouselPositions.forEach(position => {
+    if (window.scrollY >= position - 60) {
+      currentCarouselPosition = position;
+    } else {
+      currentCarouselPosition = -1;
+    }
+  });
+
   const eventBehaviour = () => {
     if (window.scrollY >= carouselPositions[currentCarouselPosition + 1] - 60 - (offsetHeight / 3)) {
+      // scrolling down
       currentCarouselPosition += 1;
       setCarouselSlideOnFocus(currentCarouselPosition - 1, currentCarouselPosition);
     } else if (window.scrollY <= carouselPositions[currentCarouselPosition - 1]) {
+      // scrolling up
       currentCarouselPosition -= 1;
       setCarouselSlideOnFocus(currentCarouselPosition + 1, currentCarouselPosition);
     }
